@@ -19,7 +19,7 @@ resource "aws_iam_policy" "assume_images_assessmentimagesbucketfullaccess_role_p
   provider = aws.users
 
   description = var.assume_images_assessmentimagesbucketfullaccess_policy_description
-  name        = var.assume_images_assessmentimagesbucketfullaccess_policy_name
+  name        = local.assume_assessmentimagesbucketfullaccess_policy_name["production"]
   policy      = data.aws_iam_policy_document.assume_images_assessmentimagesbucketfullaccess_role_production_doc.json
 }
 
@@ -52,7 +52,7 @@ resource "aws_iam_policy" "assume_images_assessmentimagesbucketfullaccess_role_s
   provider = aws.users
 
   description = var.assume_images_assessmentimagesbucketfullaccess_policy_description
-  name        = var.assume_images_assessmentimagesbucketfullaccess_policy_name
+  name        = local.assume_assessmentimagesbucketfullaccess_policy_name["staging"]
   policy      = data.aws_iam_policy_document.assume_images_assessmentimagesbucketfullaccess_role_staging_doc.json
 }
 

@@ -29,7 +29,7 @@ variable "assume_images_assessmentimagesbucketfullaccess_policy_description" {
 
 variable "assume_images_assessmentimagesbucketfullaccess_policy_name" {
   type        = string
-  description = "The name to assign the IAM policy that allows assumption of the role that allows full access to the assessment images bucket in an Images account."
+  description = "The base name to assign the IAM policies that allows assumption of the role that allows full access to the assessment images bucket in an Images account This value has the environment name appended to it for each environment."
   default     = "Images-AssumeAssessmentImagesBucketFullAccess"
 }
 
