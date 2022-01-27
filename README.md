@@ -16,15 +16,17 @@ details on Terraform modules and the standard module structure.
 
 ## Usage ##
 
-```hcl
-module "example" {
-  source = "github.com/cisagov/cool-assessment-images-manager-iam"
+1. Create a Terraform workspace (if you haven't already done so) by running
+   `terraform workspace new <workspace_name>`
+1. Create a `<workspace_name>.tfvars` file with all of the required
+  variables (see [Inputs](#Inputs) below for details):
 
-  aws_region            = "us-west-1"
-  aws_availability_zone = "b"
-  subnet_id             = "subnet-0123456789abcdef0"
-}
-```
+  ```hcl
+  ```
+
+1. Run the command `terraform init`.
+1. Run the command `terraform apply
+  -var-file=<workspace_name>.tfvars`.
 
 ## Requirements ##
 
@@ -38,6 +40,7 @@ module "example" {
 | Name | Version |
 |------|---------|
 | aws | ~> 3.38 |
+| terraform | n/a |
 
 ## Modules ##
 
@@ -47,40 +50,25 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_instance.example](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
-| [aws_ami.example](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
-| [aws_default_tags.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/default_tags) | data source |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [terraform_remote_state.assessment_images](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
+| [terraform_remote_state.users](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| ami\_owner\_account\_id | The ID of the AWS account that owns the Example AMI, or "self" if the AMI is owned by the same account as the provisioner. | `string` | `"self"` | no |
-| aws\_availability\_zone | The AWS availability zone to deploy into (e.g. a, b, c, etc.). | `string` | `"a"` | no |
 | aws\_region | The AWS region to deploy into (e.g. us-east-1). | `string` | `"us-east-1"` | no |
-| subnet\_id | The ID of the AWS subnet to deploy into (e.g. subnet-0123456789abcdef0). | `string` | n/a | yes |
+| tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
 
 ## Outputs ##
 
-| Name | Description |
-|------|-------------|
-| arn | The EC2 instance ARN. |
-| availability\_zone | The AZ where the EC2 instance is deployed. |
-| id | The EC2 instance ID. |
-| private\_ip | The private IP of the EC2 instance. |
-| subnet\_id | The ID of the subnet where the EC2 instance is deployed. |
+No outputs.
 
 ## Notes ##
 
 Running `pre-commit` requires running `terraform init` in every directory that
 contains Terraform code. In this repository, this is just the main directory.
-
-## New Repositories from a Skeleton ##
-
-Please see our [Project Setup guide](https://github.com/cisagov/development-guide/tree/develop/project_setup)
-for step-by-step instructions on how to start a new repository from
-a skeleton. This will save you time and effort when configuring a
-new repository!
 
 ## Contributing ##
 
