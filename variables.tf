@@ -21,6 +21,18 @@ variable "assessment_images_managers_group_name" {
   default     = "assessment_images_managers"
 }
 
+variable "assume_images_assessmentimagesbucketfullaccess_policy_description" {
+  type        = string
+  description = "The description to associate with the IAM policy that allows assumption of the role that allows full access to the assessment images bucket in an Images account."
+  default     = "The IAM policy that allows assumption of the role that allows full access to the assessment images bucket in an Images account."
+}
+
+variable "assume_images_assessmentimagesbucketfullaccess_policy_name" {
+  type        = string
+  description = "The name to assign the IAM policy that allows assumption of the role that allows full access to the assessment images bucket in an Images account."
+  default     = "Images-AssessmentImagesBucketFullAccess"
+}
+
 variable "aws_region" {
   type        = string
   description = "The AWS region to deploy into (e.g. us-east-1)."
