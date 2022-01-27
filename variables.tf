@@ -30,7 +30,7 @@ variable "assume_images_assessmentimagesbucketfullaccess_policy_description" {
 variable "assume_images_assessmentimagesbucketfullaccess_policy_name" {
   type        = string
   description = "The name to assign the IAM policy that allows assumption of the role that allows full access to the assessment images bucket in an Images account."
-  default     = "Images-AssessmentImagesBucketFullAccess"
+  default     = "Images-AssumeAssessmentImagesBucketFullAccess"
 }
 
 variable "aws_region" {
