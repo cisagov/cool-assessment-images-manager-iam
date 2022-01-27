@@ -27,12 +27,6 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-variable "system_environments" {
-  type        = list(string)
-  description = "The list of system environments to consider in this configuration. Example: [\"production\", \"staging\"]"
-  default     = ["production", "staging"]
-}
-
 variable "tags" {
   type        = map(string)
   description = "Tags to apply to all AWS resources created."

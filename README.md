@@ -70,7 +70,6 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | assessment\_images\_managers\_group\_name | The base name of the group to be created for assessment images manager users in each Images account. This value has the environment name appended to it for each environment. | `string` | `"assessment_images_managers"` | no |
 | aws\_region | The AWS region to deploy into (e.g. us-east-1). | `string` | `"us-east-1"` | no |
-| system\_environments | The list of system environments to consider in this configuration. Example: ["production", "staging"] | `list(string)` | ```[ "production", "staging" ]``` | no |
 | tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
 | users | A map whose keys are the usernames of each user that is allowed to manage assessment images and whose values are the environments to give each user. Example: { "firstname1.lastname1" = ["production", "staging"], "firstname2.lastname2" = ["production"], "firstname3.lastname3" = ["staging"] } | `map(list(string))` | n/a | yes |
 
