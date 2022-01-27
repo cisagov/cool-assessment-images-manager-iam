@@ -22,6 +22,11 @@ details on Terraform modules and the standard module structure.
   variables (see [Inputs](#Inputs) below for details):
 
   ```hcl
+  users = {
+    "firstname1.lastname1" = ["production", "staging"],
+    "firstname2.lastname2" = ["production"],
+    "firstname3.lastname3" = ["staging"]
+  }
   ```
 
 1. Run the command `terraform init`.
@@ -40,6 +45,7 @@ details on Terraform modules and the standard module structure.
 | Name | Version |
 |------|---------|
 | aws | ~> 3.38 |
+| aws.users | ~> 3.38 |
 | terraform | n/a |
 
 ## Modules ##
@@ -50,7 +56,11 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [aws_iam_group.assessment_images_managers](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group) | resource |
+| [aws_iam_user_group_membership.assessment_images_managers_production](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_group_membership) | resource |
+| [aws_iam_user_group_membership.assessment_images_managers_staging](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_group_membership) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [aws_iam_user.users](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_user) | data source |
 | [terraform_remote_state.assessment_images](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 | [terraform_remote_state.users](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
@@ -58,8 +68,11 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| assessment\_images\_managers\_group\_name | The base name of the group to be created for assessment images manager users in each Images account. This value has the environment name appended to it for each environment. | `string` | `"assessment_images_managers"` | no |
 | aws\_region | The AWS region to deploy into (e.g. us-east-1). | `string` | `"us-east-1"` | no |
+| system\_environments | The list of system environments to consider in this configuration. Example: ["production", "staging"] | `list(string)` | ```[ "production", "staging" ]``` | no |
 | tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
+| users | A map whose keys are the usernames of each user that is allowed to manage assessment images and whose values are the environments to give each user. Example: { "firstname1.lastname1" = ["production", "staging"], "firstname2.lastname2" = ["production"], "firstname3.lastname3" = ["staging"] } | `map(list(string))` | n/a | yes |
 
 ## Outputs ##
 
