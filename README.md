@@ -79,7 +79,7 @@ No modules.
 | assume\_images\_assessmentimagesbucketfullaccess\_policy\_name | The base name to assign the IAM policies that allows assumption of the role that allows full access to the assessment images bucket in an Images account This value has the environment name appended to it for each environment. | `string` | `"Images-AssumeAssessmentImagesBucketFullAccess"` | no |
 | aws\_region | The AWS region to deploy into (e.g. us-east-1). | `string` | `"us-east-1"` | no |
 | tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
-| users | A map whose keys are the usernames of each user that is allowed to manage assessment images and whose values are the environments to give each user. Example: { "firstname1.lastname1" = ["production", "staging"], "firstname2.lastname2" = ["production"], "firstname3.lastname3" = ["staging"] } | `map(list(string))` | n/a | yes |
+| users | A map whose keys are the usernames of each user that is allowed to manage assessment images and whose values are lists of the environments each respective user can manage. Example: { "firstname1.lastname1" = ["production", "staging"], "firstname2.lastname2" = ["production"], "firstname3.lastname3" = ["staging"] } | `map(list(string))` | n/a | yes |
 
 ## Outputs ##
 

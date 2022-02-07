@@ -6,7 +6,7 @@
 
 variable "users" {
   type        = map(list(string))
-  description = "A map whose keys are the usernames of each user that is allowed to manage assessment images and whose values are the environments to give each user. Example: { \"firstname1.lastname1\" = [\"production\", \"staging\"], \"firstname2.lastname2\" = [\"production\"], \"firstname3.lastname3\" = [\"staging\"] }"
+  description = "A map whose keys are the usernames of each user that is allowed to manage assessment images and whose values are lists of the environments each respective user can manage. Example: { \"firstname1.lastname1\" = [\"production\", \"staging\"], \"firstname2.lastname2\" = [\"production\"], \"firstname3.lastname3\" = [\"staging\"] }"
 }
 
 # ------------------------------------------------------------------------------
