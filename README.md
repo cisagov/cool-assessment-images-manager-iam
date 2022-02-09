@@ -2,17 +2,29 @@
 
 [![GitHub Build Status](https://github.com/cisagov/cool-assessment-images-manager-iam/workflows/build/badge.svg)](https://github.com/cisagov/cool-assessment-images-manager-iam/actions)
 
-This is a generic skeleton project that can be used to quickly get a
-new [cisagov](https://github.com/cisagov) [Terraform
-module](https://www.terraform.io/docs/modules/index.html) GitHub
-repository started.  This skeleton project contains [licensing
-information](LICENSE), as well as [pre-commit
-hooks](https://pre-commit.com) and
-[GitHub Actions](https://github.com/features/actions) configurations
-appropriate for the major languages that we use.
+This project is used to manage IAM permissions for COOL users that are allowed
+to manage the objects stored in the S3 bucket created in
+[cisagov/cool-images-assessment-images](https://github.com/cisagov/cool-images-assessment-images).
 
-See [here](https://www.terraform.io/docs/modules/index.html) for more
-details on Terraform modules and the standard module structure.
+## Pre-requisites ##
+
+- [Terraform](https://www.terraform.io/) installed on your system.
+- An accessible AWS S3 bucket to store Terraform state
+  (specified in [backend.tf](backend.tf)).
+- An accessible AWS DynamoDB database to store the Terraform state lock
+  (specified in [backend.tf](backend.tf)).
+- Access to all of the Terraform remote states specified in
+  [remote_states.tf](remote_states.tf).
+- The following COOL accounts and roles must have been created:
+  - Users:
+    [`cisagov/cool-accounts/users`](https://github.com/cisagov/cool-accounts/tree/develop/users)
+- User accounts for all users must have been created previously. We
+  recommend using the
+  [`cisagov/cool-users-non-admin`](https://github.com/cisagov/cool-users-non-admin)
+  repository to create users.
+- Terraform in
+  [`cisagov/cool-images-assessment-images`](https://github.com/cisagov/cool-images-assessment-images)
+  must have been applied.
 
 ## Usage ##
 
