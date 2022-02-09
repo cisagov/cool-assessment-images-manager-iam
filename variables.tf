@@ -5,8 +5,8 @@
 # ------------------------------------------------------------------------------
 
 variable "users" {
-  type        = map(list(string))
-  description = "A map whose keys are the usernames of each user that is allowed to manage assessment images and whose values are lists of the environments each respective user can manage. Example: { \"firstname1.lastname1\" = [\"production\", \"staging\"], \"firstname2.lastname2\" = [\"production\"], \"firstname3.lastname3\" = [\"staging\"] }"
+  type        = list(string)
+  description = "A list whose values are the usernames of each user that is allowed to manage assessment images. Example: [\"firstname1.lastname1\", \"firstname2.lastname2\", \"firstname3.lastname3\"]"
 }
 
 # ------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ variable "users" {
 
 variable "assessment_images_managers_group_name" {
   type        = string
-  description = "The base name of the group to be created for assessment images manager users in each Images account. This value has the environment name appended to it for each environment."
+  description = "The base name of the group to be created for assessment images manager users in each Images account. This value has the current workspace name appended to it before use."
   default     = "assessment_images_managers"
 }
 
@@ -29,7 +29,7 @@ variable "assume_images_assessmentimagesbucketfullaccess_policy_description" {
 
 variable "assume_images_assessmentimagesbucketfullaccess_policy_name" {
   type        = string
-  description = "The base name to assign the IAM policies that allow assumption of the role that allows full access to the assessment images bucket in an Images account. This value has the environment name appended to it for each environment."
+  description = "The base name to assign the IAM policies that allow assumption of the role that allows full access to the assessment images bucket in an Images account. This value has the current workspace name appended to it before use."
   default     = "Images-AssumeAssessmentImagesBucketFullAccess"
 }
 

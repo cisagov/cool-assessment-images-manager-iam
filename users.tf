@@ -1,8 +1,8 @@
-# Fetch all users listed in var.production_users and var.staging_users
+# Fetch all users listed var.users
 data "aws_iam_user" "users" {
   provider = aws.users
 
-  for_each = toset(keys(var.users))
+  for_each = local.users
 
-  user_name = each.key
+  user_name = each.value
 }

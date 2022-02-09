@@ -22,11 +22,11 @@ details on Terraform modules and the standard module structure.
   variables (see [Inputs](#Inputs) below for details):
 
   ```hcl
-  users = {
-    "firstname1.lastname1" = ["production", "staging"],
-    "firstname2.lastname2" = ["production"],
-    "firstname3.lastname3" = ["staging"]
-  }
+  users = []
+    "firstname1.lastname1",
+    "firstname2.lastname2",
+    "firstname3.lastname3",
+  ]
   ```
 
 1. Run the command `terraform init`.
@@ -57,15 +57,11 @@ No modules.
 | Name | Type |
 |------|------|
 | [aws_iam_group.assessment_images_managers](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group) | resource |
-| [aws_iam_group_policy_attachment.assume_images_assessmentimagesbucketfullaccess_role_production_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy_attachment) | resource |
-| [aws_iam_group_policy_attachment.assume_images_assessmentimagesbucketfullaccess_role_staging_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy_attachment) | resource |
-| [aws_iam_policy.assume_images_assessmentimagesbucketfullaccess_role_production](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
-| [aws_iam_policy.assume_images_assessmentimagesbucketfullaccess_role_staging](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
-| [aws_iam_user_group_membership.assessment_images_managers_production](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_group_membership) | resource |
-| [aws_iam_user_group_membership.assessment_images_managers_staging](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_group_membership) | resource |
+| [aws_iam_group_policy_attachment.assume_images_assessmentimagesbucketfullaccess_role_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy_attachment) | resource |
+| [aws_iam_policy.assume_images_assessmentimagesbucketfullaccess_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_user_group_membership.assessment_images_managers](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_group_membership) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
-| [aws_iam_policy_document.assume_images_assessmentimagesbucketfullaccess_role_production_doc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.assume_images_assessmentimagesbucketfullaccess_role_staging_doc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.assume_images_assessmentimagesbucketfullaccess_role_doc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_user.users](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_user) | data source |
 | [terraform_remote_state.assessment_images](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 | [terraform_remote_state.users](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
@@ -74,12 +70,12 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| assessment\_images\_managers\_group\_name | The base name of the group to be created for assessment images manager users in each Images account. This value has the environment name appended to it for each environment. | `string` | `"assessment_images_managers"` | no |
+| assessment\_images\_managers\_group\_name | The base name of the group to be created for assessment images manager users in each Images account. This value has the current workspace name appended to it before use. | `string` | `"assessment_images_managers"` | no |
 | assume\_images\_assessmentimagesbucketfullaccess\_policy\_description | The description to associate with the IAM policy that allows assumption of the role that allows full access to the assessment images bucket in an Images account. | `string` | `"The IAM policy that allows assumption of the role that allows full access to the assessment images bucket in an Images account."` | no |
-| assume\_images\_assessmentimagesbucketfullaccess\_policy\_name | The base name to assign the IAM policies that allow assumption of the role that allows full access to the assessment images bucket in an Images account. This value has the environment name appended to it for each environment. | `string` | `"Images-AssumeAssessmentImagesBucketFullAccess"` | no |
+| assume\_images\_assessmentimagesbucketfullaccess\_policy\_name | The base name to assign the IAM policies that allow assumption of the role that allows full access to the assessment images bucket in an Images account. This value has the current workspace name appended to it before use. | `string` | `"Images-AssumeAssessmentImagesBucketFullAccess"` | no |
 | aws\_region | The AWS region to deploy into (e.g. us-east-1). | `string` | `"us-east-1"` | no |
 | tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
-| users | A map whose keys are the usernames of each user that is allowed to manage assessment images and whose values are lists of the environments each respective user can manage. Example: { "firstname1.lastname1" = ["production", "staging"], "firstname2.lastname2" = ["production"], "firstname3.lastname3" = ["staging"] } | `map(list(string))` | n/a | yes |
+| users | A list whose values are the usernames of each user that is allowed to manage assessment images. Example: ["firstname1.lastname1", "firstname2.lastname2", "firstname3.lastname3"] | `list(string)` | n/a | yes |
 
 ## Outputs ##
 
