@@ -4,9 +4,9 @@
 # You must provide a value for each of these parameters.
 # ------------------------------------------------------------------------------
 
-variable "subnet_id" {
-  type        = string
-  description = "The ID of the AWS subnet to deploy into (e.g. subnet-0123456789abcdef0)."
+variable "users" {
+  type        = map(list(string))
+  description = "A map whose keys are the usernames of each user that is allowed to manage assessment images and whose values are lists of the environments each respective user can manage. Example: { \"firstname1.lastname1\" = [\"production\", \"staging\"], \"firstname2.lastname2\" = [\"production\"], \"firstname3.lastname3\" = [\"staging\"] }"
 }
 
 # ------------------------------------------------------------------------------
@@ -14,20 +14,33 @@ variable "subnet_id" {
 #
 # These parameters have reasonable defaults.
 # ------------------------------------------------------------------------------
-variable "ami_owner_account_id" {
+
+variable "assessment_images_managers_group_name" {
   type        = string
-  description = "The ID of the AWS account that owns the Example AMI, or \"self\" if the AMI is owned by the same account as the provisioner."
-  default     = "self"
+  description = "The base name of the group to be created for assessment images manager users in each Images account. This value has the environment name appended to it for each environment."
+  default     = "assessment_images_managers"
 }
 
-variable "aws_availability_zone" {
+variable "assume_images_assessmentimagesbucketfullaccess_policy_description" {
   type        = string
-  description = "The AWS availability zone to deploy into (e.g. a, b, c, etc.)."
-  default     = "a"
+  description = "The description to associate with the IAM policy that allows assumption of the role that allows full access to the assessment images bucket in an Images account."
+  default     = "The IAM policy that allows assumption of the role that allows full access to the assessment images bucket in an Images account."
+}
+
+variable "assume_images_assessmentimagesbucketfullaccess_policy_name" {
+  type        = string
+  description = "The base name to assign the IAM policies that allow assumption of the role that allows full access to the assessment images bucket in an Images account. This value has the environment name appended to it for each environment."
+  default     = "Images-AssumeAssessmentImagesBucketFullAccess"
 }
 
 variable "aws_region" {
   type        = string
   description = "The AWS region to deploy into (e.g. us-east-1)."
   default     = "us-east-1"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to apply to all AWS resources created."
+  default     = {}
 }
