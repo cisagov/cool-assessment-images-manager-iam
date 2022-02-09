@@ -16,7 +16,7 @@ data "terraform_remote_state" "assessment_images" {
     key            = "cool-images-assessment-images/terraform.tfstate"
   }
 
-  workspace = "default"
+  workspace = terraform.workspace
 }
 
 data "terraform_remote_state" "users" {

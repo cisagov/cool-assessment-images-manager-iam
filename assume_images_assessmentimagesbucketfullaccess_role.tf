@@ -1,6 +1,6 @@
 # IAM policy document that allows assumption of the
-# AssessmentImagesBucketFullAccess role in the Images (Production) account
-data "aws_iam_policy_document" "assume_images_assessmentimagesbucketfullaccess_role_production_doc" {
+# AssessmentImagesBucketFullAccess role in the Images account.
+data "aws_iam_policy_document" "assume_images_assessmentimagesbucketfullaccess_role_doc" {
   statement {
     effect = "Allow"
 
@@ -10,56 +10,23 @@ data "aws_iam_policy_document" "assume_images_assessmentimagesbucketfullaccess_r
     ]
 
     resources = [
-      data.terraform_remote_state.assessment_images.outputs.assessmentimagesbucketfullaccess_role_production.arn,
+      data.terraform_remote_state.assessment_images.outputs.assessmentimagesbucketfullaccess_role.arn,
     ]
   }
 }
 
-resource "aws_iam_policy" "assume_images_assessmentimagesbucketfullaccess_role_production" {
+resource "aws_iam_policy" "assume_images_assessmentimagesbucketfullaccess_role" {
   provider = aws.users
 
   description = var.assume_images_assessmentimagesbucketfullaccess_policy_description
-  name        = local.assume_assessmentimagesbucketfullaccess_policy_name["production"]
-  policy      = data.aws_iam_policy_document.assume_images_assessmentimagesbucketfullaccess_role_production_doc.json
+  name        = local.assume_assessmentimagesbucketfullaccess_policy_name
+  policy      = data.aws_iam_policy_document.assume_images_assessmentimagesbucketfullaccess_role_doc.json
 }
 
 # Attach the policy to the Production assessment images managers group
-resource "aws_iam_group_policy_attachment" "assume_images_assessmentimagesbucketfullaccess_role_production_attachment" {
+resource "aws_iam_group_policy_attachment" "assume_images_assessmentimagesbucketfullaccess_role_attachment" {
   provider = aws.users
 
-  group      = aws_iam_group.assessment_images_managers["production"].name
-  policy_arn = aws_iam_policy.assume_images_assessmentimagesbucketfullaccess_role_production.arn
-}
-
-# IAM policy document that allows assumption of the
-# AssessmentImagesBucketFullAccess role in the Images (Staging) account
-data "aws_iam_policy_document" "assume_images_assessmentimagesbucketfullaccess_role_staging_doc" {
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "sts:AssumeRole",
-      "sts:TagSession",
-    ]
-
-    resources = [
-      data.terraform_remote_state.assessment_images.outputs.assessmentimagesbucketfullaccess_role_staging.arn,
-    ]
-  }
-}
-
-resource "aws_iam_policy" "assume_images_assessmentimagesbucketfullaccess_role_staging" {
-  provider = aws.users
-
-  description = var.assume_images_assessmentimagesbucketfullaccess_policy_description
-  name        = local.assume_assessmentimagesbucketfullaccess_policy_name["staging"]
-  policy      = data.aws_iam_policy_document.assume_images_assessmentimagesbucketfullaccess_role_staging_doc.json
-}
-
-# Attach the policy to the Staging assessment images managers group
-resource "aws_iam_group_policy_attachment" "assume_images_assessmentimagesbucketfullaccess_role_staging_attachment" {
-  provider = aws.users
-
-  group      = aws_iam_group.assessment_images_managers["staging"].name
-  policy_arn = aws_iam_policy.assume_images_assessmentimagesbucketfullaccess_role_staging.arn
+  group      = aws_iam_group.assessment_images_managers.name
+  policy_arn = aws_iam_policy.assume_images_assessmentimagesbucketfullaccess_role.arn
 }
