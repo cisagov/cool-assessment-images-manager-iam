@@ -33,19 +33,20 @@ details on Terraform modules and the standard module structure.
 1. Run the command `terraform apply
   -var-file=<workspace_name>.tfvars`.
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements ##
 
 | Name | Version |
 |------|---------|
 | terraform | ~> 1.0 |
-| aws | ~> 3.38 |
+| aws | ~> 4.9 |
 
 ## Providers ##
 
 | Name | Version |
 |------|---------|
-| aws | ~> 3.38 |
-| aws.users | ~> 3.38 |
+| aws | ~> 4.9 |
+| aws.users | ~> 4.9 |
 | terraform | n/a |
 
 ## Modules ##
@@ -84,6 +85,7 @@ No modules.
 ## Outputs ##
 
 No outputs.
+<!-- END_TF_DOCS -->
 
 ## Notes ##
 
