@@ -2,13 +2,11 @@
 # AssessmentImagesBucketFullAccess role in the Images (Production) account
 data "aws_iam_policy_document" "assume_images_assessmentimagesbucketfullaccess_role_production_doc" {
   statement {
-    effect = "Allow"
-
     actions = [
       "sts:AssumeRole",
       "sts:TagSession",
     ]
-
+    effect = "Allow"
     resources = [
       data.terraform_remote_state.assessment_images.outputs.assessmentimagesbucketfullaccess_role_production.arn,
     ]
@@ -35,13 +33,11 @@ resource "aws_iam_group_policy_attachment" "assume_images_assessmentimagesbucket
 # AssessmentImagesBucketFullAccess role in the Images (Staging) account
 data "aws_iam_policy_document" "assume_images_assessmentimagesbucketfullaccess_role_staging_doc" {
   statement {
-    effect = "Allow"
-
     actions = [
       "sts:AssumeRole",
       "sts:TagSession",
     ]
-
+    effect = "Allow"
     resources = [
       data.terraform_remote_state.assessment_images.outputs.assessmentimagesbucketfullaccess_role_staging.arn,
     ]
