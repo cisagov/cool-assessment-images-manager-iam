@@ -4,6 +4,11 @@
 # You must provide a value for each of these parameters.
 # ------------------------------------------------------------------------------
 
+variable "terraform_state_bucket" {
+  description = "The name of the S3 bucket where Terraform state is stored."
+  type        = string
+}
+
 variable "users" {
   description = "A map whose keys are the usernames of each user that is allowed to manage assessment images and whose values are lists of the environments each respective user can manage. Example: { \"firstname1.lastname1\" = [\"production\", \"staging\"], \"firstname2.lastname2\" = [\"production\"], \"firstname3.lastname3\" = [\"staging\"] }"
   nullable    = false
