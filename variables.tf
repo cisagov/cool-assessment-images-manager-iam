@@ -4,10 +4,16 @@
 # You must provide a value for each of these parameters.
 # ------------------------------------------------------------------------------
 
-variable "users" {
-  description = "A map whose keys are the usernames of each user that is allowed to manage assessment images and whose values are lists of the environments each respective user can manage. Example: { \"firstname1.lastname1\" = [\"production\", \"staging\"], \"firstname2.lastname2\" = [\"production\"], \"firstname3.lastname3\" = [\"staging\"] }"
+variable "terraform_state_bucket" {
+  description = "The name of the S3 bucket where Terraform state is stored."
   nullable    = false
-  type        = map(list(string))
+  type        = string
+}
+
+variable "users" {
+  description = "A list of usernames that are allowed to manage assessment images. Example: [ \"firstname1.lastname1\", \"firstname2.lastname2\", \"firstname3.lastname3\" ]"
+  nullable    = false
+  type        = list(string)
 }
 
 # ------------------------------------------------------------------------------
@@ -18,7 +24,7 @@ variable "users" {
 
 variable "assessment_images_managers_group_name" {
   default     = "assessment_images_managers"
-  description = "The base name of the group to be created for assessment images manager users in each Images account. This value has the environment name appended to it for each environment."
+  description = "The name of the group to be created for assessment images manager users in the Images account."
   nullable    = false
   type        = string
 }
@@ -32,7 +38,7 @@ variable "assume_images_assessmentimagesbucketfullaccess_policy_description" {
 
 variable "assume_images_assessmentimagesbucketfullaccess_policy_name" {
   default     = "Images-AssumeAssessmentImagesBucketFullAccess"
-  description = "The base name to assign the IAM policies that allow assumption of the role that allows full access to the assessment images bucket in an Images account. This value has the environment name appended to it for each environment."
+  description = "The name to assign the IAM policy that allows assumption of the role that allows full access to the assessment images bucket in the Images account."
   nullable    = false
   type        = string
 }
