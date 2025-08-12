@@ -70,14 +70,14 @@ is required to initialize the Terraform backend in each environment:
 | Name | Version |
 |------|---------|
 | terraform | ~> 1.1 |
-| aws | ~> 4.9 |
+| aws | ~> 6.7 |
 
 ## Providers ##
 
 | Name | Version |
 |------|---------|
-| aws | ~> 4.9 |
-| aws.users | ~> 4.9 |
+| aws | ~> 6.7 |
+| aws.users | ~> 6.7 |
 | terraform | n/a |
 
 ## Modules ##
