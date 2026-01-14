@@ -1,6 +1,8 @@
 # cool-assessment-images-manager-iam #
 
 [![GitHub Build Status](https://github.com/cisagov/cool-assessment-images-manager-iam/workflows/build/badge.svg)](https://github.com/cisagov/cool-assessment-images-manager-iam/actions)
+[![License](https://img.shields.io/github/license/cisagov/cool-assessment-images-manager-iam)](https://spdx.org/licenses/)
+[![CodeQL](https://github.com/cisagov/cool-assessment-images-manager-iam/workflows/CodeQL/badge.svg)](https://github.com/cisagov/cool-assessment-images-manager-iam/actions/workflows/codeql-analysis.yml)
 
 This is a Terraform deployment for creating IAM resources for those
 users allowed to manage assessment images in the COOL.
