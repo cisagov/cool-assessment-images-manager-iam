@@ -70,14 +70,14 @@ is required to initialize the Terraform backend in each environment:
 ## Requirements ##
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | terraform | ~> 1.1 |
 | aws | ~> 6.7 |
 
 ## Providers ##
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | aws | ~> 6.7 |
 | aws.users | ~> 6.7 |
 | terraform | n/a |
@@ -89,7 +89,7 @@ No modules.
 ## Resources ##
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_iam_group.assessment_images_managers](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group) | resource |
 | [aws_iam_group_policy_attachment.assume_images_assessmentimagesbucketfullaccess_role_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy_attachment) | resource |
 | [aws_iam_policy.assume_images_assessmentimagesbucketfullaccess_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
@@ -103,7 +103,7 @@ No modules.
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | assessment\_images\_managers\_group\_name | The name of the group to be created for assessment images manager users in the Images account. | `string` | `"assessment_images_managers"` | no |
 | assume\_images\_assessmentimagesbucketfullaccess\_policy\_description | The description to associate with the IAM policy that allows assumption of the role that allows full access to the assessment images bucket in an Images account. | `string` | `"The IAM policy that allows assumption of the role that allows full access to the assessment images bucket in an Images account."` | no |
 | assume\_images\_assessmentimagesbucketfullaccess\_policy\_name | The name to assign the IAM policy that allows assumption of the role that allows full access to the assessment images bucket in the Images account. | `string` | `"Images-AssumeAssessmentImagesBucketFullAccess"` | no |
