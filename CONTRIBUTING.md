@@ -15,12 +15,12 @@ all of which should be in this repository.
 
 If you want to report a bug or request a new feature, the most direct
 method is to [create an
-issue](https://github.com/cisagov/cool-assessment-images-manager-iam/issues) in this
-repository.  We recommend that you first search through existing
-issues (both open and closed) to check if your particular issue has
-already been reported.  If it has then you might want to add a comment
-to the existing issue.  If it hasn't then feel free to create a new
-one.
+issue](https://github.com/cisagov/cool-assessment-images-manager-iam/issues)
+in this repository.  We recommend that you first search through
+existing issues (both open and closed) to check if your particular
+issue has already been reported.  If it has then you might want to add
+a comment to the existing issue.  If it hasn't then feel free to
+create a new one.
 
 ## Pull requests ##
 
